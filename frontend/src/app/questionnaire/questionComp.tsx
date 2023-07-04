@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IAnswer, IQuestion } from "./interfaces";
+import { useRouter } from "next/navigation";
 
 export default function QuestionComp({
   question,
@@ -17,13 +18,14 @@ export default function QuestionComp({
   lastQuestion: boolean;
 }): React.ReactNode {
   const [answer, setAnswer] = useState("");
+  const router = useRouter();
 
   const handleChange = (value: string) => {
     let updatedAnswer = value;
     setAnswer(updatedAnswer);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     let newAnswers = answers;
     newAnswers[currentQuestionId] = {
@@ -34,9 +36,22 @@ export default function QuestionComp({
     if (!lastQuestion) {
       setAnswer("");
       setCurrentQuestionId(++currentQuestionId);
-      return null;
+    } else {
+      console.log(answers);
+      console.log(JSON.stringify({ data: answers }));
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: answers }),
+      };
+      await fetch(
+        "http://127.0.0.1:8090/api/collections/Feedback/records",
+        options
+      );
+      router.push("/questionnaire/thanks");
     }
-    console.log("done");
   };
 
   const handleBack = () => {
@@ -57,8 +72,13 @@ export default function QuestionComp({
         required
       />
       <div className="fromButtons">
-        <button onClick={handleBack}>Back</button>
-        <button type="submit">Next</button>
+        <button
+          onClick={handleBack}
+          className={currentQuestionId == 0 ? "hidden" : undefined}
+        >
+          Back
+        </button>
+        <button type="submit">{lastQuestion ? "Finish" : "Next"}</button>
       </div>
     </form>
   );

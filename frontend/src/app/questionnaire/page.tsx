@@ -2,9 +2,10 @@
 import isConditionMet from "../utils/questionnaireConditions";
 import { Operation } from "../utils/enums";
 import { IQuestionContainer, IAnswer } from "./interfaces";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import QuestionComp from "./questionComp";
 import Card from "../components/Card/Card";
+import "./questionnaire.css";
 
 export default function Questionnaire() {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
@@ -24,7 +25,7 @@ export default function Questionnaire() {
       question: [
         {
           title: "Basic Questions",
-          text: "On a scale from 1 lowest to 10 highest, how would you rate the service we provide ?",
+          text: "On a scale from 1(lowest) to 10(highest), how would you rate the service we provide ?",
           type: "number",
           params: {
             min: 1,
@@ -86,10 +87,8 @@ export default function Questionnaire() {
     },
   ];
 
-  console.log(isConditionMet(questions[currentQuestionId].condition, answers));
-
   return (
-    <main>
+    <main className="questionnaire">
       <Card>
         <QuestionComp
           question={

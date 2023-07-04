@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -5,7 +6,7 @@ export default function Home() {
     <main className={styles.main}>
       <h3>We want your</h3>
       <h2>Feedback</h2>
-      <a href="/questionnaire">Click Here !</a>
+      <Link href="/questionnaire">Click Here !</Link>
     </main>
   );
 }

@@ -1,20 +1,29 @@
-export default function isConditionMet(condition: any, answer: any): boolean {
-  const value = condition.value;
-  let sum = 0;
-  let avg = 0;
+import { IAnswer } from "../questionnaire/interfaces";
 
-  if (answer.length > 1) {
-    answer.forEach((num: number) => (sum += num));
-    avg = sum / answer.length;
-  }
+export default function isConditionMet(condition: any, answers: any): boolean {
+  if (!condition) return false;
+
+  const input: any[] = [];
+  condition.answer.forEach((index: any) => {
+    input.push(answers[index].value);
+  });
+
+  const value = condition.value;
+  let sum: number = 0;
+  let avg: number = 0;
+
+  input.forEach((num: string) => {
+    sum += Number(num);
+  });
+  avg = sum / input.length;
 
   switch (condition.operation) {
     case "lessThen":
-      return answer < value;
+      return sum < value;
     case "moreThen":
-      return answer > value;
+      return sum > value;
     case "equalTo":
-      return answer === value;
+      return sum === value;
     case "avgLessThen":
       return avg < value;
     case "avgMoreThen":

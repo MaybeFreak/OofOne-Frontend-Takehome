@@ -1,21 +1,26 @@
 import { Operation } from "../utils/enums";
 
-interface ICondition {
+export interface ICondition {
   answer: any;
   operation: Operation;
   value: any;
 }
 
-interface IQuestion {
+export interface IInputParams {
+  min?: number;
+  max?: number;
+}
+
+export interface IQuestion {
   title: string;
   text: string;
   type: string;
-  params?: object;
+  params?: IInputParams;
 }
 
 export interface IQuestionContainer {
   condition?: ICondition;
-  question: IQuestion | IQuestion[];
+  question: IQuestion[];
 }
 
 export interface IAnswer {

@@ -1,37 +1,50 @@
+"use client";
 import isConditionMet from "../utils/questionnaireConditions";
 import { Operation } from "../utils/enums";
 import { IQuestionContainer, IAnswer } from "./interfaces";
+import { useEffect, useState } from "react";
+import QuestionComp from "./questionComp";
+import Card from "../components/Card/Card";
 
 export default function Questionnaire() {
+  const [currentQuestionId, setCurrentQuestionId] = useState(0);
+  const [answers, setAnswers] = useState<IAnswer[]>([]);
+
   const questions: IQuestionContainer[] = [
     {
-      question: {
-        title: "Basic Questions",
-        text: "When did you start using our service ?",
-        type: "date",
-      },
+      question: [
+        {
+          title: "Basic Questions",
+          text: "When did you start using our service ?",
+          type: "date",
+        },
+      ],
     },
     {
-      question: {
-        title: "Basic Questions",
-        text: "On a scale from 1 lowest to 10 highest, how would you rate the service we provide ?",
-        type: "number",
-        params: {
-          min: 1,
-          max: 10,
+      question: [
+        {
+          title: "Basic Questions",
+          text: "On a scale from 1 lowest to 10 highest, how would you rate the service we provide ?",
+          type: "number",
+          params: {
+            min: 1,
+            max: 10,
+          },
         },
-      },
+      ],
     },
     {
-      question: {
-        title: "Basic Questions",
-        text: "On a scale from 1 lowest to 10 highest, how would you rate the user experience ?",
-        type: "number",
-        params: {
-          min: 1,
-          max: 10,
+      question: [
+        {
+          title: "Basic Questions",
+          text: "On a scale from 1 lowest to 10 highest, how would you rate the user experience ?",
+          type: "number",
+          params: {
+            min: 1,
+            max: 10,
+          },
         },
-      },
+      ],
     },
     {
       condition: {
@@ -73,10 +86,26 @@ export default function Questionnaire() {
     },
   ];
 
-  const answers: IAnswer[] = [];
+  console.log(isConditionMet(questions[currentQuestionId].condition, answers));
 
-  console.log("hello?");
-
-  const answer = [6];
-  return <main>This is the questionnaire</main>;
+  return (
+    <main>
+      <Card>
+        <QuestionComp
+          question={
+            questions[currentQuestionId].question[
+              isConditionMet(questions[currentQuestionId].condition, answers)
+                ? 1
+                : 0
+            ]
+          }
+          answers={answers}
+          currentQuestionId={currentQuestionId}
+          setCurrentQuestionId={setCurrentQuestionId}
+          setAnswers={setAnswers}
+          lastQuestion={currentQuestionId === questions.length - 1}
+        />
+      </Card>
+    </main>
+  );
 }

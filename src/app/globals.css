@@ -1,0 +1,17 @@
+:root {
+  box-sizing: border-box;
+
+  color-scheme: dark !important;
+}
+
+html {
+  min-height: 100%;
+  width: 100%;
+
+  background-color: #111;
+  color: whitesmoke;
+}
+
+main {
+  overflow: hidden;
+}

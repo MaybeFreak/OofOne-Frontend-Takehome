@@ -1,0 +1,43 @@
+.landingPage {
+  display: flex;
+}
+
+.hero {
+  margin: auto;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+
+  > h2,
+  h3 {
+    margin: 0;
+  }
+
+  > h2 {
+    font-size: 10rem;
+  }
+
+  > h3 {
+    opacity: 0.8;
+    font-size: 3rem;
+  }
+
+  > a {
+    width: max-content;
+    margin: auto;
+    padding: 1rem 2rem;
+
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #111;
+    background-color: whitesmoke;
+    border-radius: 15px;
+
+    transition: all 0.3s;
+  }
+
+  > a:hover {
+    background-color: #ddd;
+  }
+}

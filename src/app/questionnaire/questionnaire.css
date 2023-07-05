@@ -49,3 +49,22 @@ form input {
 button.hidden {
   display: none;
 }
+
+.thanks {
+  margin-top: 2rem;
+  text-align: center;
+
+  > a {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: white;
+    border: solid 1px whitesmoke;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+
+  > a:hover {
+    background-color: whitesmoke;
+    color: black;
+  }
+}

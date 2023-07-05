@@ -46,10 +46,7 @@ export default function QuestionComp({
         },
         body: JSON.stringify({ data: answers }),
       };
-      await fetch(
-        "http://127.0.0.1:8090/api/collections/Feedback/records",
-        options
-      );
+      await fetch("http://localhost:3000/api/feedback", options);
       router.push("/questionnaire/thanks");
     }
   };

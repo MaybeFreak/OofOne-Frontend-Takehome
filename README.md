@@ -39,3 +39,23 @@ For styling anything from vanilla CSS to Tailwind is fine, but please do not use
 If you have any questions, please ask!
 
 To complete your homework, please fork this repo and commit your work to your fork. When you are ready for us to look at it, give us access to your fork so we can review and run it.
+
+## Starting the app
+
+Starting the App itself
+
+```bash
+npm run dev
+```
+
+Starting the backend DB
+
+```bash
+./pocketbase.exe serve
+```
+
+## Working Pages 
+
+ - Main Page: http://localhost:3000
+ - Questionnaire: http://localhost:3000/questionnaire
+ - Feedback Page: http://localhost:3000/feedback

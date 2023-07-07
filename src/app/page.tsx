@@ -8,7 +8,7 @@ export default function Home() {
       <div className="hero">
         <h3>We want your</h3>
         <h2>Feedback</h2>
-        <Link href="/questionnaire">Click Here !</Link>
+        <Link href="/questionnaire/1">Click Here !</Link>
       </div>
     </main>
   );

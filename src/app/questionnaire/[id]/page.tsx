@@ -1,10 +1,11 @@
 "use client";
-import isConditionMet from "../utils/questionnaireConditions";
-import { IQuestionContainer, IAnswer } from "./interfaces";
+import isConditionMet from "../../utils/questionnaireConditions";
+import { IQuestionContainer, IAnswer } from "../interfaces";
 import { useEffect, useState } from "react";
-import QuestionComp from "./questionComp";
-import Card from "../components/Card/Card";
-import "./questionnaire.css";
+import QuestionComp from "../questionComp";
+import Card from "../../components/Card/Card";
+import "../questionnaire.css";
+import { useParams } from "next/navigation";
 
 export default function Questionnaire() {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
@@ -12,8 +13,10 @@ export default function Questionnaire() {
   const [formId, setFormId] = useState<number>(0);
   const [answers, setAnswers] = useState<IAnswer[]>([]);
 
+  const params = useParams();
+
   const fetchdata = async () => {
-    const formData = await fetch("http://localhost:4000/forms/1")
+    const formData = await fetch(`http://localhost:4000/forms/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setFormId(data.id);

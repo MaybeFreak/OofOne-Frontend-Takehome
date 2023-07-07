@@ -55,7 +55,7 @@ export default function CreateForm() {
     setNewForm([...updatedForm]);
   };
 
-  const handleRemove = (questionIndex: number): undefined => {
+  const handleRemove = (questionIndex: number) => {
     console.log("remove question", questionIndex);
     const updatedForm = newForm;
     console.log(updatedForm);
@@ -70,65 +70,89 @@ export default function CreateForm() {
     setNewForm([...updatedForm]);
   };
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(newForm);
+  };
+
   return (
-    <main className="create">
-      {newForm.map((question, i) => (
-        <div className="question" key={i}>
-          {question.question.map((question, j) => (
-            <Card key={j}>
-              {j !== 0 && (
-                <>
-                  <p>Set conditions when this path shows up</p>
-                  <p>Based on</p>
-                  <select>
-                    <option value="">Please select one</option>
-                    {newForm.map((e, k) => {
-                      console.log(k, i);
-                      if (k < i)
-                        return <option value={k}>Question {k + 1}</option>;
-                    })}
-                  </select>
-                  <p>When</p>
-                  <select>
-                    <option value="">Select comparison</option>
-                    {}
-                  </select>
-                </>
-              )}
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                onChange={(e) => handleChange(e, i, j)}
-                value={question.title}
-              />
-              <input
-                type="text"
-                name="text"
-                placeholder="Question"
-                onChange={(e) => handleChange(e, i, j)}
-                value={question.text}
-              />
-              <select>
-                <option>text</option>
-                <option>number</option>
-                <option>date</option>
-              </select>
-            </Card>
-          ))}
-          {i !== 0 && (
-            <>
-              {question.question.length < 2 ? (
-                <button onClick={() => handleAddPath(i)}>Add Path</button>
-              ) : (
-                <button onClick={() => handleRemovePath(i)}>Remove Path</button>
-              )}
-            </>
-          )}
-          {i !== 0 && <button onClick={() => handleRemove(i)}>x</button>}
-        </div>
-      ))}
-      <button onClick={addQuestion}>Add Question</button>
+    <main>
+      <form className="create" onSubmit={(e) => handleSubmit(e)}>
+        {newForm.map((question, i) => (
+          <div className="question" key={i}>
+            {question.question.map((question, j) => (
+              <Card key={j}>
+                {j !== 0 && (
+                  <>
+                    <p>Set conditions when this path shows up</p>
+                    <p>Based on</p>
+                    <select required>
+                      <option value="">Please select one</option>
+                      {newForm.map((e, k) => {
+                        console.log(k, i);
+                        if (k < i)
+                          return <option value={k}>Question {k + 1}</option>;
+                      })}
+                    </select>
+                    <p>When</p>
+                    <select required>
+                      <option value="">Select comparison</option>
+                      {Object.values(Operation).map((operation, i) => (
+                        <option value={operation} key={i}>
+                          {operation}
+                        </option>
+                      ))}
+                    </select>
+                    <p>Value</p>
+                    <input
+                      type={
+                        newForm[newForm[i].condition?.answer].question[0].type
+                      }
+                      required
+                    />
+                  </>
+                )}
+                <h2>Question</h2>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  onChange={(e) => handleChange(e, i, j)}
+                  value={question.title}
+                  required
+                />
+                <input
+                  type="text"
+                  name="text"
+                  placeholder="Question"
+                  onChange={(e) => handleChange(e, i, j)}
+                  value={question.text}
+                  required
+                />
+                <select name="type" onChange={(e) => handleChange(e, i, j)}>
+                  <option value={"text"}>text</option>
+                  <option value={"number"}>number</option>
+                  <option value={"date"}>date</option>
+                </select>
+              </Card>
+            ))}
+            {i !== 0 && (
+              <>
+                {question.question.length < 2 ? (
+                  <button onClick={() => handleAddPath(i)}>Add Path</button>
+                ) : (
+                  <button onClick={() => handleRemovePath(i)}>
+                    Remove Path
+                  </button>
+                )}
+              </>
+            )}
+            {i !== 0 && <button onClick={() => handleRemove(i)}>x</button>}
+          </div>
+        ))}
+        <button onClick={addQuestion}>Add Question</button>
+        <button type="submit">Finish</button>
+      </form>
     </main>
   );
 }

@@ -1,0 +1,146 @@
+{
+  "forms": [
+    {
+      "id": 1,
+      "data": [
+        {
+          "question": [
+            {
+              "title": "Basic Questions",
+              "text": "When did you start using our service ?",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "question": [
+            {
+              "title": "Basic Questions",
+              "text": "On a scale from 1(lowest) to 10(highest), how would you rate the service we provide ?",
+              "type": "number",
+              "params": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "question": [
+            {
+              "title": "Basic Questions",
+              "text": "On a scale from 1 lowest to 10 highest, how would you rate the user experience ?",
+              "type": "number",
+              "params": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "condition": {
+            "answer": [
+              1,
+              2
+            ],
+            "operation": "avgMoreThen",
+            "value": 5
+          },
+          "question": [
+            {
+              "title": "Help us improve",
+              "text": "Are there any services you would like us to provide or improve on ?",
+              "type": "textarea"
+            },
+            {
+              "title": "Help us refine",
+              "text": "What are some of the core services you use ?",
+              "type": "textarea"
+            }
+          ]
+        },
+        {
+          "condition": {
+            "answer": [
+              1,
+              2
+            ],
+            "operation": "avgMoreThen",
+            "value": 5
+          },
+          "question": [
+            {
+              "title": "Help us improve",
+              "text": "How could we improve your user experience ?",
+              "type": "textarea"
+            },
+            {
+              "title": "Help us refine",
+              "text": "What do you think creates a good user experience ?",
+              "type": "textarea"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "data": {
+        "for": 1,
+        "data": [
+          {
+            "question": "When did you start using our service ?",
+            "value": "2023-07-07"
+          },
+          {
+            "question": "On a scale from 1(lowest) to 10(highest), how would you rate the service we provide ?",
+            "value": "5"
+          },
+          {
+            "question": "On a scale from 1 lowest to 10 highest, how would you rate the user experience ?",
+            "value": "6"
+          },
+          {
+            "question": "What are some of the core services you use ?",
+            "value": "Forms"
+          },
+          {
+            "question": "What do you think creates a good user experience ?",
+            "value": "Easy to use interfaces "
+          }
+        ]
+      },
+      "id": 1
+    },
+    {
+      "data": {
+        "for": 1,
+        "data": [
+          {
+            "question": "When did you start using our service ?",
+            "value": "2023-06-27"
+          },
+          {
+            "question": "On a scale from 1(lowest) to 10(highest), how would you rate the service we provide ?",
+            "value": "1"
+          },
+          {
+            "question": "On a scale from 1 lowest to 10 highest, how would you rate the user experience ?",
+            "value": "3"
+          },
+          {
+            "question": "Are there any services you would like us to provide or improve on ?",
+            "value": "Just needs more features"
+          },
+          {
+            "question": "How could we improve your user experience ?",
+            "value": "Pressing enter on the form should go to the next question "
+          }
+        ]
+      },
+      "id": 2
+    }
+  ]
+}

@@ -9,6 +9,7 @@ export default function QuestionComp({
   setCurrentQuestionId,
   setAnswers,
   lastQuestion,
+  formId,
 }: {
   question: IQuestion;
   answers: IAnswer[];
@@ -16,6 +17,7 @@ export default function QuestionComp({
   setCurrentQuestionId: Function;
   setAnswers: Function;
   lastQuestion: boolean;
+  formId: number;
 }): React.ReactNode {
   const [answer, setAnswer] = useState("");
   const router = useRouter();
@@ -37,14 +39,12 @@ export default function QuestionComp({
       setAnswer("");
       setCurrentQuestionId(++currentQuestionId);
     } else {
-      console.log(answers);
-      console.log(JSON.stringify({ data: answers }));
       const options = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: answers }),
+        body: JSON.stringify({ data: { for: formId, data: answers } }),
       };
       await fetch("http://localhost:3000/api/feedback", options);
       router.push("/questionnaire/thanks");

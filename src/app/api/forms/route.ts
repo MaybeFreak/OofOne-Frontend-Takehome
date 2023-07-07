@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export default async function AddForm(req: Request, res: Response) {
+export async function POST(req: Request, res: Response) {
   const newForm = await req.json();
   console.log("New Form \n", newForm);
   const options = {
@@ -11,5 +11,5 @@ export default async function AddForm(req: Request, res: Response) {
     body: JSON.stringify(newForm),
   };
   fetch("http://localhost:4000/forms", options);
-  return NextResponse.json({ data: "New Form was created" });
+  return NextResponse.json({});
 }

@@ -70,9 +70,17 @@ export default function CreateForm() {
     setNewForm([...updatedForm]);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(newForm);
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: newForm }),
+    };
+    await fetch("http://localhost:3000/api/forms", options);
   };
 
   return (
@@ -89,7 +97,6 @@ export default function CreateForm() {
                     <select required>
                       <option value="">Please select one</option>
                       {newForm.map((e, k) => {
-                        console.log(k, i);
                         if (k < i)
                           return <option value={k}>Question {k + 1}</option>;
                       })}

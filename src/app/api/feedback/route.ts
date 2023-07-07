@@ -11,5 +11,5 @@ export async function POST(req: Request, res: Response) {
     body: JSON.stringify(data),
   };
   fetch("http://localhost:4000/answers", options);
-  return NextResponse.json({ data: "Answer has be submitted" });
+  return NextResponse.json({});
 }

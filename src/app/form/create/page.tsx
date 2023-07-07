@@ -6,7 +6,17 @@ import Card from "@/app/components/Card/Card";
 import "./create.css";
 
 export default function CreateForm() {
-  const [newForm, setNewForm] = useState<IQuestionContainer[]>([]);
+  const [newForm, setNewForm] = useState<IQuestionContainer[]>([
+    {
+      question: [
+        {
+          title: "",
+          text: "",
+          type: "text",
+        },
+      ],
+    },
+  ]);
 
   const addQuestion = () => {
     console.log("Add Question");
@@ -66,6 +76,25 @@ export default function CreateForm() {
         <div className="question" key={i}>
           {question.question.map((question, j) => (
             <Card key={j}>
+              {j !== 0 && (
+                <>
+                  <p>Set conditions when this path shows up</p>
+                  <p>Based on</p>
+                  <select>
+                    <option value="">Please select one</option>
+                    {newForm.map((e, k) => {
+                      console.log(k, i);
+                      if (k < i)
+                        return <option value={k}>Question {k + 1}</option>;
+                    })}
+                  </select>
+                  <p>When</p>
+                  <select>
+                    <option value="">Select comparison</option>
+                    {}
+                  </select>
+                </>
+              )}
               <input
                 type="text"
                 name="title"
@@ -87,12 +116,16 @@ export default function CreateForm() {
               </select>
             </Card>
           ))}
-          {question.question.length < 2 ? (
-            <button onClick={() => handleAddPath(i)}>Add Path</button>
-          ) : (
-            <button onClick={() => handleRemovePath(i)}>Remove Path</button>
+          {i !== 0 && (
+            <>
+              {question.question.length < 2 ? (
+                <button onClick={() => handleAddPath(i)}>Add Path</button>
+              ) : (
+                <button onClick={() => handleRemovePath(i)}>Remove Path</button>
+              )}
+            </>
           )}
-          <button onClick={() => handleRemove(i)}>x</button>
+          {i !== 0 && <button onClick={() => handleRemove(i)}>x</button>}
         </div>
       ))}
       <button onClick={addQuestion}>Add Question</button>

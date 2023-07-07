@@ -10,6 +10,7 @@ import "./questionnaire.css";
 export default function Questionnaire() {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [formData, setFormData] = useState<IQuestionContainer[]>([]);
+  const [formId, setFormId] = useState<number>(0);
   const [answers, setAnswers] = useState<IAnswer[]>([]);
 
   // const questions: IQuestionContainer[] = [
@@ -91,7 +92,10 @@ export default function Questionnaire() {
   const fetchdata = async () => {
     const formData = await fetch("http://localhost:4000/forms/1")
       .then((res) => res.json())
-      .then((data) => data.data);
+      .then((data) => {
+        setFormId(data.id);
+        return data.data;
+      });
     setFormData(formData);
   };
 
@@ -117,6 +121,7 @@ export default function Questionnaire() {
           setCurrentQuestionId={setCurrentQuestionId}
           setAnswers={setAnswers}
           lastQuestion={currentQuestionId === formData.length - 1}
+          formId={formId}
         />
       </Card>
     </main>

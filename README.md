@@ -51,11 +51,11 @@ npm run dev
 Starting the backend DB
 
 ```bash
-./pocketbase.exe serve
+json-server --watch --port 4000 ./src/db/db.json
 ```
 
-## Working Pages 
+## Working Pages
 
- - Main Page: http://localhost:3000
- - Questionnaire: http://localhost:3000/questionnaire
- - Feedback Page: http://localhost:3000/feedback
+- Main Page: http://localhost:3000
+- Questionnaire: http://localhost:3000/questionnaire
+- Feedback Page: http://localhost:3000/feedback

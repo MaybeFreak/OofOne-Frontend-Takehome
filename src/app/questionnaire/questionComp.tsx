@@ -44,7 +44,7 @@ export default function QuestionComp({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: answers }),
+        body: JSON.stringify({ data: { for: 1, data: answers } }),
       };
       await fetch("http://localhost:3000/api/feedback", options);
       router.push("/questionnaire/thanks");

@@ -10,6 +10,6 @@ export async function POST(req: Request, res: Response) {
     },
     body: JSON.stringify(data),
   };
-  fetch("http://127.0.0.1:8090/api/collections/Feedback/records", options);
+  fetch("http://localhost:4000/answers", options);
   return NextResponse.json({});
 }

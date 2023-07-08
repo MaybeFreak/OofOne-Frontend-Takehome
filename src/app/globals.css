@@ -15,3 +15,16 @@ html {
 main {
   overflow: hidden;
 }
+
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  background-color: black;
+  padding: 1rem 2rem;
+
+  > a {
+    color: whitesmoke;
+    text-decoration: none;
+  }
+}

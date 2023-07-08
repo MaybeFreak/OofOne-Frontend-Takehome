@@ -22,7 +22,7 @@ export default function RootLayout({
             <Link href="http://localhost:3000/">Main</Link>
             <Link href="http://localhost:3000/questionnaire">Forms</Link>
             <Link href="http://localhost:3000/form/create">Create a form</Link>
-            <Link href="http://localhost:3000/feedback">View form answers</Link>
+            <Link href="http://localhost:3000/feedback">Answers</Link>
           </nav>
         </header>
         {children}

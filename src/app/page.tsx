@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "./page.module.css";
 import "./Landing.css";
 
 export default function Home() {

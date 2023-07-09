@@ -1,0 +1,12 @@
+form.create {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+
+  > .question {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
